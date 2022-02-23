@@ -15,7 +15,6 @@
 			background-color: #f1f1f1;
 			display: flex;
 			flex-wrap: wrap;
-			position: absolute;
 			top: 0;
 		}
 
@@ -35,12 +34,38 @@
 		    margin-right: auto;
 		    display: block;
 		}
+
+    #dragButton {
+      width: 50px;
+      height: 50px;
+    }
+
+    #colorButton {
+      width: 50px;
+      height: 50px;
+    }
 	</style>
 
 	<script type="text/javascript" canvas="canvas">
 		window.onload = function() {
 			var canvas = document.getElementById('myCanvas');
+      var dragging = false;
+      var coloring = true;
+      $("#dragButton").click(dragHandler);
+      $("#colorButton").click(colorHandler);
 
+      function dragHandler() {
+        dragging = true;
+        coloring = false;
+        console.log("Inside Drag Handler\n");
+      }
+
+      function colorHandler() {
+        dragging = false;
+        coloring = true;
+        console.log("Inside Color Handler\n");
+      }
+      
 			// coloring page
 			var mandala = {
 				item: null,
@@ -118,7 +143,10 @@
 	</script>
 </head>
 <body>
-  <canvas id="myCanvas" width="750px" height="750px"></canvas>
   <div id="color-palette"></div>
+  <button id="dragButton">Drag</button>
+  <button id="colorButton">Color</button>
+  <canvas id="myCanvas" width="750px" height="750px"></canvas>
+
 </body>
 </html>
