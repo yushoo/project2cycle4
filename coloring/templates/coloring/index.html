@@ -82,15 +82,40 @@
 
 			function myCustomInteraction() {
 				var tool = new paper.Tool();
+        var drag = true;
+        if(drag){
+            console.log('asdf')
+            tool.onMouseDrag = function (event) {
+              var hit = mandala.item.hitTest(event.point, { tolerance: 10, fill: true });
+            
 
-				tool.onMouseDown = function (event) {
-				    var hit = mandala.item.hitTest(event.point, { tolerance: 10, fill: true });
-				    if (hit) {
-				    		// Color pallette keeps track of the full history of colors, though we
-				    		// only color in with the most-recent color.
-				        hit.item.fillColor = cp.history[cp.history.length - 1];
-				    }
-				}
+              if (hit) {
+                  // Color pallette keeps track of the full history of colors, though we
+                  // only color in with the most-recent color.
+                  // hit.item.fillColor = cp.history[cp.history.length - 1];
+                  // mandala.position = new paper.Point(50,50);
+                  // var path = new paper.Path(mandala)
+                  // path.strokeColor = 'red';
+                  console.log(mandala.item.position)
+                  mandala.item.position = event.delta;
+              }
+            }
+          } else {
+              console.log('fdas')
+              tool.onMouseDown = function (event) {
+              var hit = mandala.item.hitTest(event.point, { tolerance: 10, fill: true });
+            
+
+              if (hit) {
+                  // Color pallette keeps track of the full history of colors, though we
+                  // only color in with the most-recent color.
+                  hit.item.fillColor = cp.history[cp.history.length - 1];
+              }
+            }
+
+          }
+
+
 			}
 
 			// create a color palette with the given colors
