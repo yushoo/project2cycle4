@@ -98,7 +98,8 @@
                 if(dragging){
                   console.log('asdf')
                   console.log(mandala.item.position)
-                  mandala.item.position = event.delta;
+                  mandala.item.position.x += event.delta.x;
+                  mandala.item.position.y += event.delta.y;
                 }
                 else if(coloring){
                   console.log('jkl')
@@ -107,6 +108,16 @@
                   
               }
             }
+          tool.onMouseDown = function (event) {
+            var hit = mandala.item.hitTest(event.point, { tolerance: 10, fill: true });
+            
+
+              if (hit) {
+                if(coloring){
+                  hit.item.fillColor = cp.history[cp.history.length - 1];
+                }
+              }
+          }
 
 
 			}
