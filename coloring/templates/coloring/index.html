@@ -60,6 +60,8 @@
 
 				tool.onMouseDown = function (event) {
 				    var hit = mandala.item.hitTest(event.point, { tolerance: 10, fill: true });
+            
+
 				    if (hit) {
 				    		// Color pallette keeps track of the full history of colors, though we
 				    		// only color in with the most-recent color.
